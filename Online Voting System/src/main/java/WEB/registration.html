@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Election Commission - Voter Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #3b82f6 50%, #1d4ed8 75%, #1e3a8a 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated Government Seal Background */
+    .government-seal {
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      width: 150px;
+      height: 150px;
+      opacity: 0.08;
+      animation: rotateGlow 30s linear infinite;
+      z-index: 1;
+    }
+
+    .government-seal:nth-child(2) {
+      top: 70%;
+      left: 80%;
+      animation-delay: -10s;
+      width: 120px;
+      height: 120px;
+    }
+
+    .government-seal:nth-child(3) {
+      top: 30%;
+      left: 85%;
+      animation-delay: -20s;
+      width: 100px;
+      height: 100px;
+    }
+
+    @keyframes rotateGlow {
+      0% {
+        transform: rotate(0deg) scale(1);
+        filter: brightness(1) drop-shadow(0 0 20px rgba(255,255,255,0.3));
+      }
+      25% {
+        transform: rotate(90deg) scale(1.1);
+        filter: brightness(1.2) drop-shadow(0 0 30px rgba(255,255,255,0.4));
+      }
+      50% {
+        transform: rotate(180deg) scale(1);
+        filter: brightness(1) drop-shadow(0 0 20px rgba(255,255,255,0.3));
+      }
+      75% {
+        transform: rotate(270deg) scale(1.1);
+        filter: brightness(1.2) drop-shadow(0 0 30px rgba(255,255,255,0.4));
+      }
+      100% {
+        transform: rotate(360deg) scale(1);
+        filter: brightness(1) drop-shadow(0 0 20px rgba(255,255,255,0.3));
+      }
+    }
+
+    /* Floating Ballot Papers Animation */
+    .ballot-paper {
+      position: fixed;
+      width: 40px;
+      height: 60px;
+      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      opacity: 0.6;
+      animation: floatBallot 25s linear infinite;
+      z-index: 1;
+    }
+
+    .ballot-paper::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      height: 2px;
+      background: #3b82f6;
+      border-radius: 1px;
+    }
+
+    .ballot-paper::after {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 8px;
+      right: 8px;
+      height: 1px;
+      background: #94a3b8;
+      border-radius: 0.5px;
+    }
+
+    .ballot-paper:nth-child(4) {
+      animation-delay: -5s;
+      left: 20%;
+    }
+
+    .ballot-paper:nth-child(5) {
+      animation-delay: -10s;
+      left: 40%;
+    }
+
+    .ballot-paper:nth-child(6) {
+      animation-delay: -15s;
+      left: 60%;
+    }
+
+    .ballot-paper:nth-child(7) {
+      animation-delay: -20s;
+      left: 80%;
+    }
+
+    @keyframes floatBallot {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Voting Symbol Particles */
+    .vote-symbol {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      opacity: 0.4;
+      animation: symbolFloat 20s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .vote-symbol:nth-child(8) {
+      top: 20%;
+      left: 15%;
+      animation-delay: -2s;
+    }
+
+    .vote-symbol:nth-child(9) {
+      top: 60%;
+      left: 25%;
+      animation-delay: -8s;
+    }
+
+    .vote-symbol:nth-child(10) {
+      top: 40%;
+      left: 75%;
+      animation-delay: -14s;
+    }
+
+    @keyframes symbolFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.4;
+      }
+      25% {
+        transform: translateY(-20px) rotate(90deg) scale(1.1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateY(-10px) rotate(180deg) scale(0.9);
+        opacity: 0.3;
+      }
+      75% {
+        transform: translateY(-30px) rotate(270deg) scale(1.1);
+        opacity: 0.6;
+      }
+    }
+
+    /* Digital Grid Background */
+    .digital-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridPulse 8s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    /* Constitutional Emblem */
+    .constitutional-emblem {
+      position: fixed;
+      top: 5%;
+      right: 5%;
+      width: 80px;
+      height: 80px;
+      opacity: 0.15;
+      animation: emblemPulse 12s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes emblemPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.15;
+        filter: brightness(1);
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.25;
+        filter: brightness(1.5);
+      }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(25px);
+      border-radius: 24px;
+      box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      max-width: 520px;
+      width: 100%;
+      padding: 45px;
+      animation: containerEntrance 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes containerEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+      60% {
+        opacity: 0.8;
+        transform: translateY(-10px) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 45px;
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #1e40af, #3b82f6, #1e40af);
+      border-radius: 2px;
+      animation: headerGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes headerGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+    }
+
+    .header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e3a8a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header .subtitle {
+      color: #1e40af;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+      animation: fieldSlideIn 0.8s ease-out backwards;
+      position: relative;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.1s; }
+    .form-group:nth-child(2) { animation-delay: 0.15s; }
+    .form-group:nth-child(3) { animation-delay: 0.2s; }
+    .form-group:nth-child(4) { animation-delay: 0.25s; }
+    .form-group:nth-child(5) { animation-delay: 0.3s; }
+    .form-group:nth-child(6) { animation-delay: 0.35s; }
+    .form-group:nth-child(7) { animation-delay: 0.4s; }
+
+    @keyframes fieldSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    label::before {
+      content: '⚫';
+      color: #3b82f6;
+      margin-right: 8px;
+      font-size: 0.6rem;
+      opacity: 0.7;
+    }
+
+    input {
+      width: 100%;
+      padding: 18px 22px;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+      position: relative;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.12),
+        0 8px 25px rgba(59, 130, 246, 0.15);
+      transform: translateY(-3px) scale(1.02);
+      background: #ffffff;
+    }
+
+    input:valid {
+      border-color: #10b981;
+      background: linear-gradient(145deg, #f0fdf4 0%, #ffffff 100%);
+    }
+
+    input[type="date"] {
+      color: #64748b;
+    }
+
+    input[type="date"]:focus,
+    input[type="date"]:valid {
+      color: #1e293b;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 22px;
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e3a8a 100%);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      margin-top: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: buttonEntrance 0.8s ease-out 0.6s backwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow:
+        0 15px 40px rgba(30, 64, 175, 0.4),
+        0 0 0 2px rgba(255,255,255,0.2);
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+    }
+
+    .submit-btn:active {
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    @keyframes buttonEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Government Badge */
+    .gov-badge {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
+      animation: badgeRotate 20s linear infinite;
+    }
+
+    .gov-badge::before {
+      content: '🏛️';
+      font-size: 1.8rem;
+      animation: badgeRotate 20s linear infinite reverse;
+    }
+
+    @keyframes badgeRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Enhanced form validation styles */
+    .form-group.error input {
+      border-color: #ef4444;
+      background: linear-gradient(145deg, #fef2f2 0%, #ffffff 100%);
+      animation: errorShake 0.6s ease-in-out;
+    }
+
+    @keyframes errorShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      display: none;
+      font-weight: 500;
+    }
+
+    /* Loading state */
+    .submit-btn.loading {
+      position: relative;
+      color: transparent;
+      background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+    }
+
+    .submit-btn.loading::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 50%;
+      left: 50%;
+      margin-left: -12px;
+      margin-top: -12px;
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: loadingSpin 1s linear infinite;
+    }
+
+    @keyframes loadingSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive design */
+    @media (max-width: 640px) {
+      .container {
+        padding: 35px 25px;
+        margin: 15px;
+      }
+
+      .header h1 {
+        font-size: 2.3rem;
+      }
+
+      input {
+        padding: 16px 18px;
+      }
+
+      .submit-btn {
+        padding: 18px;
+        font-size: 1.1rem;
+      }
+
+      .government-seal,
+      .constitutional-emblem {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Animated Background Elements -->
+<div class="digital-grid"></div>
+
+<!-- Government Seals -->
+<svg class="government-seal" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+  <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="1"/>
+  <polygon points="50,20 55,35 70,35 58,45 63,60 50,50 37,60 42,45 30,35 45,35" fill="currentColor"/>
+  <text x="50" y="75" text-anchor="middle" font-size="8" font-weight="bold">GOVT</text>
+</svg>
+
+<svg class="government-seal" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+  <rect x="35" y="35" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1"/>
+  <polygon points="50,25 60,40 40,40" fill="currentColor"/>
+  <text x="50" y="80" text-anchor="middle" font-size="6" font-weight="bold">ELECTION</text>
+</svg>
+
+<svg class="government-seal" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+  <path d="M30 40 L70 40 L65 60 L35 60 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+  <circle cx="50" cy="35" r="8" fill="currentColor"/>
+  <text x="50" y="75" text-anchor="middle" font-size="7" font-weight="bold">VOTE</text>
+</svg>
+
+<!-- Floating Ballot Papers -->
+<div class="ballot-paper"></div>
+<div class="ballot-paper"></div>
+<div class="ballot-paper"></div>
+<div class="ballot-paper"></div>
+
+<!-- Vote Symbols -->
+<svg class="vote-symbol" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+</svg>
+
+<svg class="vote-symbol" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+</svg>
+
+<svg class="vote-symbol" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+
+<!-- Constitutional Emblem -->
+<svg class="constitutional-emblem" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="3"/>
+  <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="1"/>
+  <path d="M30 30 Q50 15 70 30 Q50 45 30 30" fill="currentColor"/>
+  <rect x="45" y="40" width="10" height="30" fill="currentColor"/>
+  <circle cx="50" cy="75" r="5" fill="currentColor"/>
+</svg>
+
+<div class="container">
+  <div class="gov-badge"></div>
+
+  <div class="header">
+    <h1>Registration</h1>
+    <div class="subtitle">Election Commission Portal</div>
+    <p>Secure voter registration for democratic participation</p>
+  </div>
+
+  <form id="registrationForm" action="registration" method="post" novalidate>
+    <div class="form-group">
+      <label for="fname">Full Name</label>
+      <input type="text" id="fname" name="fname" placeholder="Enter your full legal name" required>
+      <div class="error-message">Please enter your full name</div>
+    </div>
+
+    <div class="form-group">
+      <label for="cardno">Voter Card Number</label>
+      <input type="text" id="cardno" name="cardno" placeholder="Enter voter identification number" required pattern="[0-9]{10,}">
+      <div class="error-message">Please enter a valid voter card number</div>
+    </div>
+
+    <div class="form-group">
+      <label for="cono">Contact Number</label>
+      <input type="tel" id="cono" name="cono" placeholder="Enter registered mobile number" required pattern="[0-9]{10}">
+      <div class="error-message">Please enter a valid 10-digit phone number</div>
+    </div>
+
+    <div class="form-group">
+      <label for="add">Residential Address</label>
+      <input type="text" id="add" name="add" placeholder="Enter your complete address" required>
+      <div class="error-message">Please enter your address</div>
+    </div>
+
+    <div class="form-group">
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+      <div class="error-message">Please enter your date of birth</div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter official email address" required>
+      <div class="error-message">Please enter a valid email address</div>
+    </div>
+
+    <div class="form-group">
+      <label for="pin">Security PIN</label>
+      <input type="password" id="pin" name="pin" placeholder="Create 4-digit security PIN" required pattern="[0-9]{4}" maxlength="4">
+      <div class="error-message">Please enter a 4-digit PIN</div>
+    </div>
+
+    <button type="submit" class="submit-btn">Register Voter Account</button>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registrationForm');
+    const submitBtn = form.querySelector('.submit-btn');
+
+    // Real-time validation
+    const inputs = form.querySelectorAll('input[required]');
+    inputs.forEach(input => {
+      input.addEventListener('blur', validateField);
+      input.addEventListener('input', clearErrors);
+    });
+
+    function validateField(e) {
+      const field = e.target;
+      const formGroup = field.closest('.form-group');
+      const errorMessage = formGroup.querySelector('.error-message');
+
+      if (!field.validity.valid) {
+        formGroup.classList.add('error');
+        errorMessage.style.display = 'block';
+      } else {
+        formGroup.classList.remove('error');
+        errorMessage.style.display = 'none';
+      }
+    }
+
+    function clearErrors(e) {
+      const field = e.target;
+      const formGroup = field.closest('.form-group');
+
+      if (field.validity.valid) {
+        formGroup.classList.remove('error');
+        formGroup.querySelector('.error-message').style.display = 'none';
+      }
+    }
+
+    // Form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Validate all fields
+      let isValid = true;
+      inputs.forEach(input => {
+        const formGroup = input.closest('.form-group');
+        const errorMessage = formGroup.querySelector('.error-message');
+
+        if (!input.validity.valid) {
+          formGroup.classList.add('error');
+          errorMessage.style.display = 'block';
+          isValid = false;
+        }
+      });
+
+      if (isValid) {
+        // Show loading state
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        // Simulate form submission
+        setTimeout(() => {
+          alert('Voter registration submitted successfully! You will receive confirmation via email.');
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
+          form.reset();
+        }, 3000);
+      }
+    });
+
+    // PIN input restriction
+    const pinInput = document.getElementById('pin');
+    pinInput.addEventListener('input', function(e) {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
+    });
+
+    // Phone number input restriction
+    const phoneInput = document.getElementById('cono');
+    phoneInput.addEventListener('input', function(e) {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 10);
+    });
+
+    // Add dynamic particle effects on form interaction
+    const container = document.querySelector('.container');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        container.style.boxShadow = `
+          0 25px 80px rgba(0, 0, 0, 0.15),
+          0 0 0 1px rgba(255, 255, 255, 0.3),
+          0 0 50px rgba(59, 130, 246, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4)
+        `;
+      });
+
+      input.addEventListener('blur', function() {
+        container.style.boxShadow = `
+          0 25px 80px rgba(0, 0, 0, 0.15),
+          0 0 0 1px rgba(255, 255, 255, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4)
+        `;
+      });
+    });
+  });
+</script>
+</body>
+</html>
