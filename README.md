@@ -17,7 +17,10 @@ Environmental impact: Large amounts of paper and transportation contribute to en
 Our online voting system offers a complete digital solution that solves all of the above problems. The system incorporates modern web technologies and database management to create a secure, efficient, and user-friendly voting platform.
 Key Features
 User Registration and Authentication
+![Image](https://github.com/user-attachments/assets/cb4b3175-95c9-49fd-8528-4626d5519d47)
 
+
+![Image](https://github.com/user-attachments/assets/893dc390-7604-461e-88db-c0ab25ab2c64)
 Secure voter registration with comprehensive validation
 Unique voter ID generation and management
 Password-protected login system with session management
