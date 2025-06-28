@@ -16,7 +16,7 @@ Environmental impact: Large amounts of paper and transportation contribute to en
 # Proposed decision
 Our online voting system offers a complete digital solution that solves all of the above problems. The system incorporates modern web technologies and database management to create a secure, efficient, and user-friendly voting platform.
 Key Features
-Welcome 
+# Welcome to the Election Commission portal 
 ![Image](https://github.com/user-attachments/assets/11937585-95ac-4842-86bd-53ee497bedff)
 
 ## User Registration 
@@ -82,6 +82,42 @@ JDBC: Database connectivity and operations
 
 MySQL: Relational database for secure data storage
 Normalized Database Design: Ensures data integrity and efficiency
+
+# MySql Query
+create database votingdb;
+use votingdb;
+
+create table VotersDetail2(
+fname varchar(20),
+cardno varchar(40),
+con varchar (20),
+address varchar(20),
+dob varchar(20),
+email varchar(40),
+pin_Number varchar(20)
+);
+use votingdb;
+
+select* from VotersDetail2;
+create table voteinfo(
+cardno varchar(40),
+party varchar(20)
+);
+create table voterInformation(
+cardno varchar(40),
+pin varchar(20)
+);
+
+insert into VotersDetail2 values("maddy","6201933931","131971125","Delhi","15/2/1998","aadilsamar46@gmail.com","7862");
+insert into VotersDetail2 values("samar","9559339351","1319711255","Ranchi","15/2/1995","amar46@gmail.com","7852");
+insert into VotersDetail2 values("Ram","6201963395","131971127","Punjab","15/6/1999","ram2@gmail.com","7888");
+insert into VotersDetail2 values("sam","6201953951","131975155","uttar pradesh ","15/2/1996","sam46@gmail.com","7851");
+insert into VotersDetail2 values("Don","6201933651","1319796125","Goa","15/5/1992","Don3@gmail.com","7832");
+insert into VotersDetail2 values("bablu","6201935531","1319718525","Ranchi","15/2/1998","shan@gmail.com","7895");
+
+select* from VotersDetail2;
+
+
 
 Development Environment
 
