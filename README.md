@@ -16,11 +16,26 @@ Environmental impact: Large amounts of paper and transportation contribute to en
 # Proposed decision
 Our online voting system offers a complete digital solution that solves all of the above problems. The system incorporates modern web technologies and database management to create a secure, efficient, and user-friendly voting platform.
 Key Features
-User Registration 
+Welcome 
+![Image](https://github.com/user-attachments/assets/11937585-95ac-4842-86bd-53ee497bedff)
+
+## User Registration 
+1.A user needs to get registered himself/herself in the portal first.
 ![Image](https://github.com/user-attachments/assets/893dc390-7604-461e-88db-c0ab25ab2c64)
 
-Login and Authentication
+# ELigibility 
+2.Must have to fulfull the  Eligibility criteria  to do a Vote 
+![Image](https://github.com/user-attachments/assets/a6ce0618-dfbf-4cf1-9223-4c2e1af95dec)
+
+# Login and Authentication
+3.Voterid and password are used to login the specific user.
+      The user can access the vote page by entering his asked credentials.
+               Loginpage directs you to vote page where user can cast the vote.
 ![Image](https://github.com/user-attachments/assets/cb4b3175-95c9-49fd-8528-4626d5519d47)
+
+# Thank to Give Your Valuable Vote
+  4. With one voterid vote can be casted only once and this directs to thankyoupage.
+![Image](https://github.com/user-attachments/assets/e10707ab-c03d-4737-883a-78c684cc4cc9)
 
 
 
